@@ -1,0 +1,17 @@
+{
+    "name": "hexagondev/franken",
+    "autoload": {
+        "psr-4": {
+            "HexagonDev\\HiraKataLearner\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "HexagonDev",
+            "email": "hexagon.dev.ua@gmail.com"
+        }
+    ],
+    "require": {
+        "php": "^8.4"
+    }
+}

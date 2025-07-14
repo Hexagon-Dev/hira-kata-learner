@@ -1,0 +1,19 @@
+services:
+  app:
+    container_name: hira-kata-learner
+    image: dunglas/frankenphp
+    ports:
+      - "80:80" # HTTP
+      - "443:443" # HTTPS
+      - "443:443/udp" # HTTP/3
+    volumes:
+      - ./:/app/public
+      - caddy_data:/data
+      - caddy_config:/config
+    tty: true
+    environment:
+      FRANKENPHP_CONFIG: "worker /app/public/index.php"
+
+volumes:
+  caddy_data:
+  caddy_config:

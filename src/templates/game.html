@@ -1,0 +1,62 @@
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+      const key = '{{ $name }}';
+      const guesses = {{ $guesses }};
+      const correct = {{ $correct }};
+
+      const progressEl = document.getElementById('progress');
+
+      function handle(elem) {
+          let progress = parseInt(localStorage.getItem(key) || 0);
+
+          if (elem.dataset.correct === 'true') {
+              localStorage.setItem(key, ++progress);
+
+              window.location.reload();
+          } else {
+              elem.classList.add('incorrect');
+              elem.disabled = true;
+
+              localStorage.setItem(key, --progress);
+              progressEl.textContent = `Progress: ${progress}`;
+          }
+      }
+
+      const progress = localStorage.getItem(key) || 0;
+
+      progressEl.textContent = `Progress: ${progress}`;
+
+      const variantsContainer = document.getElementById('variants');
+
+      guesses.forEach(variant => {
+          const variantEl = document.createElement('button');
+          variantEl.className = 'variant';
+          variantEl.dataset.correct = variant.character === correct.character;
+          variantEl.innerText = variant.romaji;
+          variantEl.onclick = () => handle(variantEl, progressEl, key);
+          variantsContainer.appendChild(variantEl);
+      });
+
+      document.getElementById('correct').innerText = correct.character;
+  });
+</script>
+
+<div style="height: 100%; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+    <h1 style="text-transform: capitalize">{{ $name }}</h1>
+
+    <p style="text-align: center">
+        {{ $description }}
+    </p>
+
+    <p id="progress"></p>
+
+    <div id="correct" class="guess-item"></div>
+
+    <div id="variants" class="variants"></div>
+
+    <div role="group" style="margin-top: 1rem">
+        <a href="/" role="button" class="outline secondary">Back</a>
+
+        <button class="secondary" onclick="window.location.reload()">Randomize</button>
+    </div>
+</div>
