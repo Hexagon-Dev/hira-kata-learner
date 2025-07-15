@@ -1,16 +1,18 @@
 {
-    "name": "hexagondev/franken",
-    "autoload": {
-        "psr-4": {
-            "HexagonDev\\HiraKataLearner\\": "src/"
-        }
-    },
+    "name": "hexagondev/hira-kata-learner",
+    "description": "Small web app to learn Japanese Alphabet. Using FrankenPHP. Some kind of duolingo.",
+    "version": "1.0.0",
     "authors": [
         {
             "name": "HexagonDev",
             "email": "hexagon.dev.ua@gmail.com"
         }
     ],
+    "autoload": {
+        "psr-4": {
+            "HexagonDev\\HiraKataLearner\\": "src/"
+        }
+    },
     "require": {
         "php": "^8.4"
     }
