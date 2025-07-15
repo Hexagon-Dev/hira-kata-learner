@@ -7,8 +7,6 @@ class Response
     public function __construct(
         public mixed $content,
         public int $statusCode = 200,
-        public $contentType = 'application/json',
-        public array $headers = [],
     ) {
         //
     }
